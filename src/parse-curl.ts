@@ -1,5 +1,4 @@
-import { split } from 'shellwords';
-
+import Shellwords from '@hyrious/shellwords';
 // TODO --data-binary
 // TODO -r, --range
 
@@ -9,7 +8,7 @@ import { split } from 'shellwords';
 
 export default function(s : any) {
   if (0 != s.indexOf('curl ')) return
-  var args = rewrite(split(s))
+  var args = rewrite(Shellwords.split(s))
   var out : any = { url : '',method: 'GET', header: {} }
   var state = ''
   

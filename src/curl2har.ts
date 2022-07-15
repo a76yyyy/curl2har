@@ -41,12 +41,18 @@ function buildHAR(curlObj: any) {
 }
 
 function curlToHAR(str: string) {
-    var curlObj = parse(str);
-
-    if (Object.prototype.toString.call(curlObj) == '[object Object]' && curlObj.hasOwnProperty('url')) {
-        return successResult(buildHAR(curlObj));
-    }else{
-        return errorResult('无效的curl地址');
+    try {
+        var curlObj = parse(str);
+        console.log(JSON.stringify(curlObj),"curlObj");
+        
+        if (Object.prototype.toString.call(curlObj) == '[object Object]' && curlObj.hasOwnProperty('url')) {
+            return successResult(buildHAR(curlObj));
+        }else{
+            return errorResult('无效的curl地址');
+        }
+    } catch (error) {
+        return errorResult(String(error));
     }
+   
 }
 export default curlToHAR
