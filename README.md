@@ -13,7 +13,20 @@ npm i curl2har
 
 ```js
 import curl2har from 'curl2har';
-const harObj = curl2har(curl);
+const convertResult = curl2har(curl);
+
+```
+**检查结果:**
+
+```js
+convertResult.status === "error"
+```
+**对于不成功的转换。检查 convertResult.message**
+
+```js
+convertResult.status === "success"
+```
+**成功转换,harObj结果在convertResult.data中**
 
 # 开源协议
 
