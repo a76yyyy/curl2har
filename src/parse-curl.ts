@@ -1,5 +1,4 @@
-
-var words = require('shellwords')
+import { split } from 'shellwords';
 
 // TODO --data-binary
 // TODO -r, --range
@@ -10,7 +9,7 @@ var words = require('shellwords')
 
 export default function(s : any) {
   if (0 != s.indexOf('curl ')) return
-  var args = rewrite(words.split(s))
+  var args = rewrite(split(s))
   var out : any = { url : '',method: 'GET', header: {} }
   var state = ''
   
