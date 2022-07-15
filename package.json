@@ -1,6 +1,6 @@
 {
   "name": "curl2har",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "curl2har",
   "main": "dist/index.js",
   "files": [
@@ -68,5 +68,9 @@
   },
   "author": "xbw",
   "license": "MIT",
-  "keywords": ["har","curl","curl2har"]
+  "keywords": [
+    "har",
+    "curl",
+    "curl2har"
+  ]
 }
