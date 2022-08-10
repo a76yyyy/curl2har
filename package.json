@@ -13,7 +13,6 @@
     "build": "npm version patch && rollup -c rollup.config.js && npm publish"
   },
   "dependencies": {
-    "@hyrious/shellwords": "^0.1.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "apipost-tools": "0.0.12",
     "core-js": "^3.9.0",
@@ -22,7 +21,8 @@
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript": "^1.0.1",
-    "rollup-plugin-typescript2": "^0.31.2"
+    "rollup-plugin-typescript2": "^0.31.2",
+    "shellwords-ts": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.17",

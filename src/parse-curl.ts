@@ -1,4 +1,4 @@
-import Shellwords from '@hyrious/shellwords';
+import Shellwords from 'shellwords-ts';
 // TODO --data-binary
 // TODO -r, --range
 
@@ -7,8 +7,10 @@ import Shellwords from '@hyrious/shellwords';
  */
 
 export default function(s : any) {
-  if (0 != s.indexOf('curl ')) return
+  if (0 != s.indexOf('curl ')) return;
+  
   var args = rewrite(Shellwords.split(s))
+  
   var out : any = { url : '',method: 'GET', header: {} }
   var state = ''
   
@@ -126,7 +128,6 @@ export default function(s : any) {
         break;
     }
   })
-
   return out
 }
 
