@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@rollup/plugin-node-resolve": "^13.3.0",
-    "apipost-tools": "0.0.12",
+    "apipost-tools": "^0.0.20",
     "core-js": "^3.9.0",
     "rollup": "^2.74.1",
     "rollup-plugin-commonjs": "^10.1.0",
