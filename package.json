@@ -1,6 +1,6 @@
 {
   "name": "curl2har",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "curl2har",
   "main": "dist/index.js",
   "files": [
