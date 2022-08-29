@@ -65,8 +65,8 @@ export default function(s : any) {
         switch (state) {
           case 'header':
             var field = parseField(arg)
-            if (field && field[1]) {
-              out.header[field[0]] = field[1].trim();
+            if(Object.prototype.toString.call(field) === '[object Array]' && field.length > 0){
+              out.header[field[0]] = field.length > 1 ? field[1].trim() : '';
             }
             state = ''
             break;
