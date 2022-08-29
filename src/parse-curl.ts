@@ -65,7 +65,9 @@ export default function(s : any) {
         switch (state) {
           case 'header':
             var field = parseField(arg)
-            out.header[field[0]] = field[1]
+            if (field && field[1]) {
+              out.header[field[0]] = field[1].trim();
+            }
             state = ''
             break;
           case 'user-agent':
@@ -162,7 +164,7 @@ function rewrite(args : any) {
  */
 
 function parseField(s : any) {
-  return s.split(/: (.+)/)
+  return s.split(/:(.+)/)
 }
 
 /**
