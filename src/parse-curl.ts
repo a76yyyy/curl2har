@@ -15,7 +15,6 @@ export default function(s : any) {
   var state = ''
   
   args.forEach(function(arg : any){
-    
     switch (true) {
       case isURL(arg):
         out.url = arg
@@ -29,7 +28,7 @@ export default function(s : any) {
         state = 'header'
         break;
 
-      case arg == '-d' || arg == '--data' || arg == '--data-ascii' || arg == '--data-raw':
+      case arg == '-d' || arg == '--data' || arg == '--data-ascii' || arg == '--data-raw' || arg == '--data-binary':
         state = 'data'
         break;
 
