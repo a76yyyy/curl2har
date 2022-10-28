@@ -233,10 +233,10 @@ function parseField1(s: any, mode: string) {
                     itemObj.key = getstr2paramsvalue(i);
                   }
                   if (i.indexOf('filename=') > -1) {
-                    itemObj.filename = getstr2paramsvalue(i);
+                    itemObj.fileName = getstr2paramsvalue(i);
                     itemObj.type = 'File';
                     if (itemObj.key.trim().length <= 0) {
-                      itemObj.key = itemObj.filename;
+                      itemObj.key = itemObj.fileName;
                     }
                     if (itemObj.key.trim().length > 0) {
                       result.push(itemObj);

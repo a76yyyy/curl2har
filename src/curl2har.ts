@@ -49,7 +49,7 @@ function buildHAR(curlObj: any) {
                     value: param?.value
                 }
                 if (param?.type === 'File' && param?.key) {
-                    postDataParam.filename = param?.filename || param?.key;
+                    postDataParam.fileName = param?.fileName || param?.key;
                 }
                 if (har.postData.mimeType == 'multipart/form-data' && param?.value && /^@/.test(param?.value)) {
                     postDataParam.fileName = param.value.substr(1);
@@ -64,10 +64,8 @@ function buildHAR(curlObj: any) {
 function curlToHAR(str: string) {
     try {
         var curlObj = parse(str);
-        console.log(JSON.stringify(curlObj), "curlObj");
 
         if (Object.prototype.toString.call(curlObj) == '[object Object]' && curlObj.hasOwnProperty('url')) {
-            console.log(JSON.stringify(buildHAR(curlObj)), "buildHAR");
             return successResult(buildHAR(curlObj));
         } else {
             return errorResult('无效的curl地址');
