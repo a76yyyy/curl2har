@@ -110,7 +110,6 @@ export default function (s: any) {
               let webKits = s.match(/------WebKitFormBoundary/g);
               let urlencodeds = s.match(/\&/g);
               let equals = s.match(/\=/g);
-              let result: any = []; // 返回的参数集合
               // 参数是form-data格式参数
               if (Array.isArray(webKits) && webKits.length > 1) {
                 out.body.mode = "multipart/form-data";
@@ -200,7 +199,7 @@ function parseField1(s: any, mode: string) {
     if (mode === 'form-data') {
       let webKits = s.match(/------WebKitFormBoundary/g);
       if (Array.isArray(webKits) && webKits.length > 1) {
-        let arr = s.split(/\r\n/);
+        let arr = s.split(/\\r\\n/).length > 1 ? s.split(/\\r\\n/) : s.split(/\r\n/);
         let status = 'end'; // 当前查找的状态 key(找名称)/value(查找value)/end(结束查找)
         let itemObj: any = {
           key: '',
