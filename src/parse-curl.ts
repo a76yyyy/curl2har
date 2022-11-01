@@ -295,5 +295,5 @@ function parseField1(s: any, mode: string) {
 
 function isURL(s: any) {
   // TODO: others at some point
-  return /^https?:\/\//.test(s)
+  return /^https?:\/\//.test(s) || /^http?:\/\//.test(s)
 }
