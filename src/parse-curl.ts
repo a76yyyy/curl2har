@@ -110,16 +110,19 @@ export default function (s: any) {
               let webKits = s.match(/------WebKitFormBoundary/g);
               let urlencodeds = s.match(/\&/g);
               let equals = s.match(/\=/g);
+              if (decodeURIComponent(arg) !== arg) {
+                arg = decodeURIComponent(arg);
+              }
               // 已有指定内容格式的请求头
               if (out?.header.hasOwnProperty('Content-Type') || out?.header.hasOwnProperty('content-type')) {
-                let contentType= out.header['Content-Type'] || out.header['content-type']
-                if(String(contentType).includes('application/x-www-form-urlencoded')){
+                let contentType = out.header['Content-Type'] || out.header['content-type']
+                if (String(contentType).includes('application/x-www-form-urlencoded')) {
                   out.body.mode = "application/x-www-form-urlencoded";
                   out.body.params = parseField1(arg, 'urlencoded');
-                }else if(String(contentType).includes('multipart/form-data')){
+                } else if (String(contentType).includes('multipart/form-data')) {
                   out.body.mode = "multipart/form-data";
                   out.body.params = parseField1(arg, 'form-data');
-                }else{
+                } else {
                   out.body.text += arg;
                 }
               } else {
