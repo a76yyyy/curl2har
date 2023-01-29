@@ -94,6 +94,7 @@ export default function (s: any) {
                 text: ''
               }
             }
+            
             arg && out.body.params.push(str2params(arg));
             state = ''
             break;
@@ -168,7 +169,7 @@ function str2params(str: string) {
   if (arr.length > 0) {
     return {
       key: arr[0].trim().replace(/\"/g, ''),
-      value: arr.length > 1 ? arr[1].trim().replace(/\"/g, '') : ''
+      value: arr.length > 1 ? arr[1].trim() : ''
     }
   }
 }
