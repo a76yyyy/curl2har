@@ -114,15 +114,24 @@ export default function (s: any) {
               if (decodeURIComponent(arg) !== arg) {
                 arg = decodeURIComponent(arg);
               }
+              
               // 已有指定内容格式的请求头
               if (out?.header.hasOwnProperty('Content-Type') || out?.header.hasOwnProperty('content-type')) {
                 let contentType = out.header['Content-Type'] || out.header['content-type']
                 if (String(contentType).includes('application/x-www-form-urlencoded')) {
                   out.body.mode = "application/x-www-form-urlencoded";
-                  out.body.params = parseField1(arg, 'urlencoded');
+                  if(Object.prototype.toString.call(out.body.params) === '[object Array]'){
+                    out.body.params = [...out.body.params,...parseField1(arg, 'urlencoded')];
+                  }else{
+                    out.body.params = parseField1(arg, 'urlencoded');
+                  }
                 } else if (String(contentType).includes('multipart/form-data')) {
                   out.body.mode = "multipart/form-data";
-                  out.body.params = parseField1(arg, 'form-data');
+                  if(Object.prototype.toString.call(out.body.params) === '[object Array]'){
+                    out.body.params = [...out.body.params,...parseField1(arg, 'form-data')];
+                  }else{
+                    out.body.params = parseField1(arg, 'form-data');
+                  }
                 } else {
                   out.body.text += arg;
                 }
@@ -130,10 +139,18 @@ export default function (s: any) {
                 // 参数是form-data格式参数
                 if (Array.isArray(webKits) && webKits.length > 1) {
                   out.body.mode = "multipart/form-data";
-                  out.body.params = parseField1(arg, 'form-data');
+                  if(Object.prototype.toString.call(out.body.params) === '[object Array]'){
+                    out.body.params = [...out.body.params,...parseField1(arg, 'form-data')];
+                  }else{
+                    out.body.params = parseField1(arg, 'form-data');
+                  }
                 } else if (Array.isArray(urlencodeds) && Array.isArray(equals) && urlencodeds.length > 0 && equals.length > urlencodeds.length + 1) {
                   out.body.mode = "application/x-www-form-urlencoded";
-                  out.body.params = parseField1(arg, 'urlencoded');
+                  if(Object.prototype.toString.call(out.body.params) === '[object Array]'){
+                    out.body.params = [...out.body.params,...parseField1(arg, 'urlencoded')];
+                  }else{
+                    out.body.params = parseField1(arg, 'urlencoded');
+                  }
                 } else {
                   out.body.text += arg;
                 }
