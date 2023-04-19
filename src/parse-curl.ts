@@ -94,7 +94,7 @@ export default function (s: any) {
                 text: ''
               }
             }
-            
+
             arg && out.body.params.push(str2params(arg));
             state = ''
             break;
@@ -111,25 +111,32 @@ export default function (s: any) {
               let webKits = s.match(/------WebKitFormBoundary/g);
               let urlencodeds = s.match(/\&/g);
               let equals = s.match(/\=/g);
-              if (decodeURIComponent(arg) !== arg) {
-                arg = decodeURIComponent(arg);
+
+              try {
+                let newArg = decodeURIComponent(arg);
+                if (newArg !== arg) {
+                  arg = newArg
+                }
               }
-              
+              catch (e) {
+                console.log(e);
+              }
+
               // 已有指定内容格式的请求头
               if (out?.header.hasOwnProperty('Content-Type') || out?.header.hasOwnProperty('content-type')) {
                 let contentType = out.header['Content-Type'] || out.header['content-type']
                 if (String(contentType).includes('application/x-www-form-urlencoded')) {
                   out.body.mode = "application/x-www-form-urlencoded";
-                  if(Object.prototype.toString.call(out.body.params) === '[object Array]'){
-                    out.body.params = [...out.body.params,...parseField1(arg, 'urlencoded')];
-                  }else{
+                  if (Object.prototype.toString.call(out.body.params) === '[object Array]') {
+                    out.body.params = [...out.body.params, ...parseField1(arg, 'urlencoded')];
+                  } else {
                     out.body.params = parseField1(arg, 'urlencoded');
                   }
                 } else if (String(contentType).includes('multipart/form-data')) {
                   out.body.mode = "multipart/form-data";
-                  if(Object.prototype.toString.call(out.body.params) === '[object Array]'){
-                    out.body.params = [...out.body.params,...parseField1(arg, 'form-data')];
-                  }else{
+                  if (Object.prototype.toString.call(out.body.params) === '[object Array]') {
+                    out.body.params = [...out.body.params, ...parseField1(arg, 'form-data')];
+                  } else {
                     out.body.params = parseField1(arg, 'form-data');
                   }
                 } else {
@@ -139,16 +146,16 @@ export default function (s: any) {
                 // 参数是form-data格式参数
                 if (Array.isArray(webKits) && webKits.length > 1) {
                   out.body.mode = "multipart/form-data";
-                  if(Object.prototype.toString.call(out.body.params) === '[object Array]'){
-                    out.body.params = [...out.body.params,...parseField1(arg, 'form-data')];
-                  }else{
+                  if (Object.prototype.toString.call(out.body.params) === '[object Array]') {
+                    out.body.params = [...out.body.params, ...parseField1(arg, 'form-data')];
+                  } else {
                     out.body.params = parseField1(arg, 'form-data');
                   }
                 } else if (Array.isArray(urlencodeds) && Array.isArray(equals) && urlencodeds.length > 0 && equals.length > urlencodeds.length + 1) {
                   out.body.mode = "application/x-www-form-urlencoded";
-                  if(Object.prototype.toString.call(out.body.params) === '[object Array]'){
-                    out.body.params = [...out.body.params,...parseField1(arg, 'urlencoded')];
-                  }else{
+                  if (Object.prototype.toString.call(out.body.params) === '[object Array]') {
+                    out.body.params = [...out.body.params, ...parseField1(arg, 'urlencoded')];
+                  } else {
                     out.body.params = parseField1(arg, 'urlencoded');
                   }
                 } else {
@@ -257,7 +264,7 @@ function parseField1(s: any, mode: string) {
                   type: 'Text',
                 }
               } else {
-                status = 'key'; //开始查找key 
+                status = 'key'; //开始查找key
               }
               // 寻找发送数据必填项
             } else if (status === 'key' && item.indexOf('Content-Disposition') > -1) {
