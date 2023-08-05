@@ -1,6 +1,6 @@
 {
   "name": "curl2har",
-  "version": "0.0.20",
+  "version": "0.0.22",
   "description": "curl2har",
   "main": "dist/index.js",
   "files": [
@@ -29,6 +29,7 @@
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
     "@types/jest": "^27.5.2",
+    "@types/node": "^20.4.8",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "autoprefixer": "^10.4.14",
