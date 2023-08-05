@@ -1,7 +1,7 @@
 {
-  "name": "curl2har",
-  "version": "0.0.22",
-  "description": "curl2har",
+  "name": "@a76yyyy/curl-to-har",
+  "version": "0.0.21",
+  "description": "curl-to-har, forked from apipost project",
   "main": "dist/index.js",
   "files": [
     "libs",
@@ -10,16 +10,11 @@
   ],
   "scripts": {
     "test": "jest",
-    "build": "npm version patch && rollup -c rollup.config.js && npm publish"
+    "prebuild": "rollup -c rollup.config.js --bundleConfigAsCjs",
+    "build": "pnpm version patch && rollup -c rollup.config.js --bundleConfigAsCjs && pnpm publish"
   },
   "dependencies": {
-    "@rollup/plugin-commonjs": "^25.0.3",
-    "@rollup/plugin-node-resolve": "^15.1.0",
-    "@rollup/plugin-typescript": "^11.1.2",
     "apipost-tools": "^0.0.24",
-    "core-js": "^3.32.0",
-    "rollup": "^3.27.2",
-    "rollup-plugin-dts": "^5.3.1",
     "shellwords-ts": "^3.0.1"
   },
   "devDependencies": {
@@ -28,6 +23,9 @@
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
+    "@rollup/plugin-commonjs": "^25.0.3",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-typescript": "^11.1.2",
     "@types/jest": "^27.5.2",
     "@types/node": "^20.4.8",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
@@ -42,9 +40,11 @@
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-jest": "^27.2.3",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-react": "^7.33.1",
@@ -52,7 +52,10 @@
     "html-webpack-plugin": "^5.5.3",
     "jest": "^28.1.3",
     "lint-staged": "^11.2.6",
+    "rollup": "^3.27.2",
+    "rollup-plugin-dts": "^5.3.1",
     "ts-jest": "^28.0.8",
+    "tslib": "^2.6.1",
     "typescript": "^4.9.5",
     "url-loader": "^4.1.1",
     "yargs": "^17.7.2"
@@ -69,6 +72,8 @@
   "keywords": [
     "har",
     "curl",
-    "curl2har"
+    "curl2har",
+    "curltohar",
+    "curl-to-har"
   ]
 }

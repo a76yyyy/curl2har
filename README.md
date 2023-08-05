@@ -1,39 +1,37 @@
-<p align="center">
-  <a href="https://adesign.apipost.cn/" target="_blank">
-    <img alt="A-Design Logo" width="360" src="https://img.cdn.apipost.cn/cdn/opensource/apipost-opensource.svg" />
-  </a>
-</p>
 
-curl2har 是一个curl 到 har <request> 对象 的转换器。
+curl-to-har 是一个curl 到 har <request> 对象 的转换器, 该项目原作者为 [apipost](https://adesign.apipost.cn/) 。
 
 # 🎉 特性
 
 # 安装
 
 ```shell
-pnpm add github:a76yyyy/curl2har
+pnpm add @a76yyyy/curl-to-har
 ```
 
 # 基础使用
+
 需引入：
 
 ```js
-import curl2har from 'curl2har';
-const convertResult = curl2har(curl);
-
+import curl_to_har from '@a76yyyy/curl-to-har';
+const convertResult = curl_to_har(curl);
 ```
+
 **检查结果:**
 
 ```js
 convertResult.status === "error"
 ```
-**对于不成功的转换。检查 convertResult.message**
+
+**对于不成功的转换。检查 `convertResult.message`**
 
 ```js
 convertResult.status === "success"
 ```
-**成功转换,harObj结果在convertResult.data中**
+
+**成功转换, harObj 结果在 `convertResult.data` 中**
 
 # 开源协议
 
-curl2har 遵循 [MIT 协议](https://github.com/Apipost-Team/curl2har)。
+curl-to-har 遵循 [MIT 协议](https://github.com/a76yyyy/curltohar)。

@@ -32,7 +32,9 @@
       2,
       {
         "ignore": [
-          "curl2har"
+          "curl2har",
+          "curltohar",
+          "curl-to-har"
         ]
       }
     ],

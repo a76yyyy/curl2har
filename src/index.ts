@@ -1,4 +1,4 @@
-import curl2har from './curl2har'
+import curl_to_har from './curl-to-har'
 
-export default  curl2har
+export default curl_to_har
 

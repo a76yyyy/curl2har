@@ -61,7 +61,7 @@ function buildHAR(curlObj: any) {
     return har;
 }
 
-function curlToHAR(str: string) {
+function curl_to_har(str: string) {
     try {
         var curlObj = parse(str);
 
@@ -75,4 +75,4 @@ function curlToHAR(str: string) {
     }
 
 }
-export default curlToHAR
+export default curl_to_har
