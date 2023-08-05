@@ -2,6 +2,8 @@ import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import dts from "rollup-plugin-dts";
 import nodeResolve from "@rollup/plugin-node-resolve";
+// import terser from "@rollup/plugin-terser";
+import { optimizeLodashImports } from "@optimize-lodash/rollup-plugin";
 
 export default [{
   // name: 'curl-to-har',
@@ -11,10 +13,16 @@ export default [{
     file: 'dist/index.js',
     format: 'cjs'
   },
+  external: [
+    'apipost-tools',
+    'shellwords-ts'
+  ],
   plugins: [
     typescript(),
     commonjs(),
-    nodeResolve()
+    nodeResolve(),
+    // terser(),
+    optimizeLodashImports(),
   ]
 },
 {
