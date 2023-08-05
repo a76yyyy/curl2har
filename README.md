@@ -11,7 +11,7 @@ curl2har 是一个curl 到 har <request> 对象 的转换器。
 # 安装
 
 ```shell
-npm i curl2har
+pnpm add github:a76yyyy/curl2har
 ```
 
 # 基础使用
