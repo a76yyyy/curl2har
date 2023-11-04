@@ -23,8 +23,14 @@
 import completionHttpProtocol from './completionHttpProtocol';
 import errorResult from './errorResult';
 import getUrlQueryArray from './getUrlQueryArray';
-import NewURL from './NewURL';
+import newURL from './newURL';
 import successResult from './successResult';
 
-export { getUrlQueryArray, successResult, errorResult, completionHttpProtocol, NewURL };
-export default { getUrlQueryArray, successResult, errorResult, completionHttpProtocol, NewURL };
+export { getUrlQueryArray, successResult, errorResult, completionHttpProtocol, newURL as NewURL };
+export default {
+  getUrlQueryArray,
+  successResult,
+  errorResult,
+  completionHttpProtocol,
+  NewURL: newURL,
+};

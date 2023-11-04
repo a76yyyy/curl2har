@@ -1,21 +1,32 @@
+// 提取为常量
+const HTTP = 'http://';
+const HTTPS = 'https://';
+
+/**
+ * 检查一个字符串是否以 http:// 或 https:// 开头
+ */
+const startsWithHttpOrHttps = (str: string) => {
+  const lowerStr = str.toLowerCase();
+  return lowerStr.startsWith(HTTP) || lowerStr.startsWith(HTTPS);
+};
+
+/**
+ * 补全 http 协议前缀
+ */
 const completionHttpProtocol = (data: any) => {
   if (Object.prototype.toString.call(data) === '[object String]') {
-    if (
-      data.toLowerCase().substr(0, 7).toLowerCase() !== 'http://' &&
-      data.toLowerCase().substr(0, 8).toLowerCase() !== 'https://'
-    ) {
-      data = `http://${data}`;
+    if (!startsWithHttpOrHttps(data)) {
+      data = `${HTTP}${data}`;
     }
-  } else if (Object.prototype.toString.call(data) === '[object Object]' && data.hasOwnProperty('url')) {
-    if(Object.prototype.toString.call(data?.url) === '[object String]'){
-      if (
-        data.url.toLowerCase().substr(0, 7).toLowerCase() !== 'http://' &&
-        data.url.toLowerCase().substr(0, 8).toLowerCase() !== 'https://'
-      ) {
-        data.url = `http://${data.url}`;
+  } else if (
+    Object.prototype.toString.call(data) === '[object Object]' &&
+    data.hasOwnProperty('url')
+  ) {
+    if (Object.prototype.toString.call(data?.url) === '[object String]') {
+      if (!startsWithHttpOrHttps(data.url)) {
+        data.url = `${HTTP}${data.url}`;
       }
     }
-    
   }
   return data;
 };

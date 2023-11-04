@@ -1,46 +1,55 @@
+import url from 'url'; // 引入 node-url 库
+
 import completionHttpProtocol from './completionHttpProtocol';
+
+export interface CustomURL extends url.Url {
+  source: string;
+  file: string;
+}
+
+// 提取为常量
+const DEFAULT_URL = 'http://www.example.com';
+
+/**
+ * 创建 CustomURL 对象
+ */
+const createCustomURL = (_url: string, source: string): CustomURL => {
+  const parsedUrl = url.parse(_url);
+  const pathname = parsedUrl.pathname || '';
+  return {
+    ...parsedUrl,
+    source: source,
+    file: (pathname.match(/\/([^\/?#]+)$/i) || ['', ''])[1],
+  } as CustomURL;
+};
+
 /**
  * 根据url生成URL 对象
  */
-const NewURL = (_url: string) => {
+const newURL = (_url: string): CustomURL => {
   if (Object.prototype.toString.call(_url) !== '[object String]') {
     _url = '';
   }
-  //补全http协议前缀
-  _url = completionHttpProtocol(_url);
-  const hostReg = /(http([s]?):\/\/)([^\/\?\\#]*)([\/|\?|\\#]?)/i;
-  const host_arr = _url.match(hostReg) || [];
-  const protocol = host_arr[1];
-  const host = host_arr[3];
 
-  // 主域部分
-  const origin = protocol + host;
+  // 检查 _url 是否包含协议和主机
+  const urlReg = /^(?:\w+:)?\/\/(\S+)$/;
+  const isValidUrl = urlReg.test(_url);
 
-  // 剩下部分
-  _url = `https://www.apipost.cn${_url.substring(origin.length)}`;
-
-  let urls = {};
-  try {
-    urls = new URL(_url);
-  } catch {
-    const http_url = `https://www.apipost.cn${_url.substring(origin.length)}`;
-    const a = document.createElement('a');
-    a.href = http_url;
-    urls = {
-      source: _url,
-      href: a.href,
-      protocol: a.protocol,
-      host: a.hostname,
-      hostname: a.hostname,
-      port: a.port,
-      origin: a.origin,
-      search: a.search,
-      pathname: a.pathname,
-      file: (a.pathname.match(/\/([^\/?#]+)$/i) || ['', ''])[1],
-      hash: a.hash,
-    };
+  let urls: CustomURL;
+  if (isValidUrl) {
+    //补全http协议前缀
+    _url = completionHttpProtocol(_url);
+    try {
+      const parsedUrl = url.parse(_url) as CustomURL;
+      urls = createCustomURL(parsedUrl.href || '', _url);
+    } catch {
+      urls = createCustomURL(DEFAULT_URL + _url, _url);
+    }
+  } else {
+    const pathAndQuery = _url.split('/')[1];
+    urls = createCustomURL(DEFAULT_URL + '/' + pathAndQuery, _url);
   }
   return urls;
 };
 
-export default NewURL;
+export default newURL;

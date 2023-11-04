@@ -3,6 +3,7 @@
   "version": "0.0.23",
   "description": "curl-to-har, forked from apipost project",
   "main": "dist/index.js",
+  "homepage": "https://github.com/a76yyyy/curltohar",
   "files": [
     "libs",
     "icons",
@@ -14,7 +15,8 @@
     "build": "pnpm version patch && rollup -c rollup.config.js --bundleConfigAsCjs && pnpm publish --access public"
   },
   "dependencies": {
-    "shellwords-ts": "^3.0.1"
+    "shellwords-ts": "^3.0.1",
+    "url": "^0.11.3"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",

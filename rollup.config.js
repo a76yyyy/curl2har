@@ -14,13 +14,15 @@ export default [{
     format: 'cjs'
   },
   external: [
-    'apipost-tools',
+    'url',
     'shellwords-ts'
   ],
   plugins: [
     typescript(),
     commonjs(),
-    nodeResolve(),
+    nodeResolve({
+      preferBuiltins: false,
+    }),
     // terser(),
     optimizeLodashImports(),
   ]
@@ -28,6 +30,11 @@ export default [{
 {
   input: "src/index.ts",
   output: [{ file: "dist/index.d.ts", format: "es" }],
-  plugins: [dts.default()],
+  plugins: [
+    dts.default(),
+    nodeResolve({
+      preferBuiltins: false,
+    }),
+  ],
 }]
 
