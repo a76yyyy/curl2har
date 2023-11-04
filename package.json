@@ -1,6 +1,6 @@
 {
   "name": "@a76yyyy/curl-to-har",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "curl-to-har, forked from apipost project",
   "main": "dist/index.js",
   "homepage": "https://github.com/a76yyyy/curltohar",
