@@ -10,3 +10,4 @@ yarn.lock
 .history
 .lh
 pnpm-lock.yaml
+.vscode

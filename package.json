@@ -14,7 +14,6 @@
     "build": "pnpm version patch && rollup -c rollup.config.js --bundleConfigAsCjs && pnpm publish --access public"
   },
   "dependencies": {
-    "apipost-tools": "^0.0.24",
     "shellwords-ts": "^3.0.1"
   },
   "devDependencies": {
